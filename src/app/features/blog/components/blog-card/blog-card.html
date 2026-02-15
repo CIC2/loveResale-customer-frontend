@@ -1,0 +1,23 @@
+<article class="blog-card" [class.blog-card--featured]="variant() === 'featured'">
+  <div class="blog-card__image-wrapper">
+    <img 
+      src="/images/blog-title.jpg" 
+      [alt]="article().title" 
+      class="blog-card__image"
+    />
+    @if (article().isRecentlyUpdated) {
+      <span class="blog-card__badge">
+        {{ 'blog.recentlyUpdated' | transloco }}
+      </span>
+    }
+  </div>
+  <div class="blog-card__content">
+    <h3 class="blog-card__title">{{ article().title }}</h3>
+    <p class="blog-card__description">{{ article().description }}</p>
+    <div class="blog-card__meta">
+      <span class="blog-card__author">{{ article().author }}</span>
+      <span class="blog-card__separator">-</span>
+      <span class="blog-card__date">{{ article().date }}</span>
+    </div>
+  </div>
+</article>

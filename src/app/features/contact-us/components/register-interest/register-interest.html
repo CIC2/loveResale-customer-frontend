@@ -1,0 +1,122 @@
+<div class="register-interest">
+  <div class="register-interest__header">
+    <h2 class="register-interest__title">
+      {{ 'contactUs.registerInterest.title' | transloco }}
+    </h2>
+    <p class="register-interest__description">
+      {{ 'contactUs.registerInterest.description' | transloco }}
+    </p>
+  </div>
+
+  <form class="register-interest__form" [formGroup]="interestForm" (ngSubmit)="onSubmit()">
+    <!-- Full Name -->
+    <div class="register-interest__field">
+      <label class="register-interest__label">
+        {{ 'contactUs.registerInterest.fullName' | transloco }}
+      </label>
+      <input
+        pInputText
+        type="text"
+        formControlName="fullName"
+        [placeholder]="'contactUs.registerInterest.fullNamePlaceholder' | transloco"
+        class="register-interest__input"
+        [class.register-interest__input--invalid]="isFieldInvalid('fullName')"
+      />
+    </div>
+
+    <!-- Phone Number -->
+    <div class="register-interest__field">
+      <label class="register-interest__label">
+        {{ 'contactUs.registerInterest.phone' | transloco }}
+      </label>
+      <app-mobile-number-input formControlName="phone" />
+    </div>
+
+    <!-- Email Address -->
+    <div class="register-interest__field">
+      <label class="register-interest__label">
+        {{ 'contactUs.registerInterest.email' | transloco }}
+      </label>
+      <input
+        pInputText
+        type="email"
+        formControlName="email"
+        [placeholder]="'contactUs.registerInterest.emailPlaceholder' | transloco"
+        class="register-interest__input"
+        [class.register-interest__input--invalid]="isFieldInvalid('email')"
+      />
+    </div>
+
+    <!-- Location -->
+    <div class="register-interest__field">
+      <label class="register-interest__label">
+        {{ 'contactUs.registerInterest.location' | transloco }}
+      </label>
+      <p-select
+        formControlName="location"
+        [options]="locations"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'contactUs.registerInterest.locationPlaceholder' | transloco"
+        styleClass="register-interest__select"
+        [class.register-interest__select--invalid]="isFieldInvalid('location')"
+      />
+    </div>
+
+    <!-- Project -->
+    <div class="register-interest__field">
+      <label class="register-interest__label">
+        {{ 'contactUs.registerInterest.project' | transloco }}
+      </label>
+      <p-select
+        formControlName="project"
+        [options]="projects"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'contactUs.registerInterest.projectPlaceholder' | transloco"
+        styleClass="register-interest__select"
+        [class.register-interest__select--invalid]="isFieldInvalid('project')"
+      />
+    </div>
+
+    <!-- Branch -->
+    <div class="register-interest__field">
+      <label class="register-interest__label">
+        {{ 'contactUs.registerInterest.branch' | transloco }}
+      </label>
+      <p-select
+        formControlName="branch"
+        [options]="branches"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'contactUs.registerInterest.branchPlaceholder' | transloco"
+        styleClass="register-interest__select"
+        [class.register-interest__select--invalid]="isFieldInvalid('branch')"
+      />
+    </div>
+
+    <!-- Message -->
+    <div class="register-interest__field">
+      <label class="register-interest__label">
+        {{ 'contactUs.registerInterest.message' | transloco }}
+      </label>
+      <textarea
+        pTextarea
+        formControlName="message"
+        [placeholder]="'contactUs.registerInterest.messagePlaceholder' | transloco"
+        class="register-interest__textarea"
+        rows="3"
+      ></textarea>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="register-interest__actions">
+      <p-button
+        type="submit"
+        [label]="'contactUs.registerInterest.submit' | transloco"
+        [loading]="isSubmitting"
+        styleClass="register-interest__submit-btn"
+      />
+    </div>
+  </form>
+</div>

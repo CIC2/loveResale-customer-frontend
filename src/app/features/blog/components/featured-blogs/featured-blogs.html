@@ -1,0 +1,12 @@
+<section class="featured-blogs">
+  <div class="featured-blogs__container">
+    <div class="featured-blogs__grid">
+      @for (article of featuredArticles(); track article.id) {
+        <app-blog-card 
+          [article]="article" 
+          variant="featured"
+        />
+      }
+    </div>
+  </div>
+</section>

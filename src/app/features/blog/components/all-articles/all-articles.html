@@ -1,0 +1,32 @@
+<section class="all-articles">
+  <div class="all-articles__container">
+    <div class="all-articles__header">
+      <div class="all-articles__title-section">
+        <h2 class="all-articles__title">
+          {{ 'blog.allArticles.title' | transloco }}
+        </h2>
+      </div>
+      <p class="all-articles__description">
+        {{ 'blog.allArticles.description' | transloco }}
+      </p>
+    </div>
+
+    <div class="all-articles__tabs">
+      @for (year of years(); track year) {
+        <button 
+          class="all-articles__tab"
+          [class.all-articles__tab--active]="selectedYear() === year"
+          (click)="selectYear(year)"
+        >
+          {{ year }}
+        </button>
+      }
+    </div>
+
+    <div class="all-articles__grid">
+      @for (article of articles(); track article.id) {
+        <app-blog-card [article]="article" />
+      }
+    </div>
+  </div>
+</section>

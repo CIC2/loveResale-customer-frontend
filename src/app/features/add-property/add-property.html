@@ -1,0 +1,105 @@
+<section class="add-property">
+  <!-- Header Section -->
+  <header class="add-property__header">
+    <div class="add-property__header-content">
+      <div class="add-property__header-left">
+        <!-- Breadcrumbs -->
+        <nav class="add-property__breadcrumbs">
+          <a href="/" class="add-property__breadcrumb-link">{{ 'common.home' | transloco }}</a>
+          <span class="add-property__breadcrumb-separator">
+            <svg-icon src="assets/icons/chevron-right.svg" [svgStyle]="{ 'width.rem': 1, 'height.rem': 1 }"></svg-icon>
+          </span>
+          <span class="add-property__breadcrumb-current">{{ 'addProperty.breadcrumb.sellProperty' | transloco }}</span>
+        </nav>
+        <!-- Page Title -->
+        <h1 class="add-property__title">{{ 'addProperty.title' | transloco }}</h1>
+      </div>
+      <div class="add-property__header-right">
+        <img src="assets/images/homfly-logo-large.svg" alt="Homfly" class="add-property__logo" />
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="add-property__content">
+    <div class="add-property__container">
+      <!-- Left Column - Form -->
+      <main class="add-property__main">
+        <p-accordion [multiple]="true" [value]="['details']">
+          <!-- Details Section -->
+          <p-accordionpanel value="details">
+            <p-accordionheader>
+              <div class="add-property__accordion-header">
+                <span class="add-property__accordion-title">{{ 'addProperty.sections.details' | transloco }}</span>
+                <svg-icon 
+                  src="assets/icons/chevron-down.svg" 
+                  [svgStyle]="{ 'width.rem': 1.5, 'height.rem': 1.5 }"
+                  class="add-property__accordion-icon"
+                ></svg-icon>
+              </div>
+            </p-accordionheader>
+            <p-accordioncontent>
+              <app-property-details-form (detailsChange)="onDetailsChange($event)" />
+            </p-accordioncontent>
+          </p-accordionpanel>
+
+          <!-- Payment Section -->
+          <p-accordionpanel value="payment">
+            <p-accordionheader>
+              <div class="add-property__accordion-header">
+                <span class="add-property__accordion-title">{{ 'addProperty.sections.payment' | transloco }}</span>
+                <svg-icon 
+                  src="assets/icons/chevron-down.svg" 
+                  [svgStyle]="{ 'width.rem': 1.5, 'height.rem': 1.5 }"
+                  class="add-property__accordion-icon"
+                ></svg-icon>
+              </div>
+            </p-accordionheader>
+            <p-accordioncontent>
+              <app-property-payment-form (paymentChange)="onPaymentChange($event)" />
+            </p-accordioncontent>
+          </p-accordionpanel>
+
+          <!-- Media Section -->
+          <p-accordionpanel value="media">
+            <p-accordionheader>
+              <div class="add-property__accordion-header">
+                <span class="add-property__accordion-title">{{ 'addProperty.sections.media' | transloco }}</span>
+                <svg-icon 
+                  src="assets/icons/chevron-down.svg" 
+                  [svgStyle]="{ 'width.rem': 1.5, 'height.rem': 1.5 }"
+                  class="add-property__accordion-icon"
+                ></svg-icon>
+              </div>
+            </p-accordionheader>
+            <p-accordioncontent>
+              <app-property-media-form (mediaChange)="onMediaChange($event)" />
+            </p-accordioncontent>
+          </p-accordionpanel>
+
+          <!-- Contact Section -->
+          <p-accordionpanel value="contact">
+            <p-accordionheader>
+              <div class="add-property__accordion-header">
+                <span class="add-property__accordion-title">{{ 'addProperty.sections.contact' | transloco }}</span>
+                <svg-icon 
+                  src="assets/icons/chevron-down.svg" 
+                  [svgStyle]="{ 'width.rem': 1.5, 'height.rem': 1.5 }"
+                  class="add-property__accordion-icon"
+                ></svg-icon>
+              </div>
+            </p-accordionheader>
+            <p-accordioncontent>
+              <app-property-contact-form (contactChange)="onContactChange($event)" />
+            </p-accordioncontent>
+          </p-accordionpanel>
+        </p-accordion>
+      </main>
+
+      <!-- Right Column - Preview -->
+      <aside class="add-property__sidebar">
+        <app-property-preview-card [previewData]="previewData()" />
+      </aside>
+    </div>
+  </div>
+</section>

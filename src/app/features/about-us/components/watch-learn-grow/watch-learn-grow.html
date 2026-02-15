@@ -1,0 +1,26 @@
+<section class="watch-learn-grow">
+  <div class="watch-learn-grow__container">
+    <div class="watch-learn-grow__header">
+      <h2 class="watch-learn-grow__title">
+        <span class="watch-learn-grow__title-line">{{ 'about.watchLearnGrow.watch' | transloco }}</span>
+        <span class="watch-learn-grow__title-line">{{ 'about.watchLearnGrow.learn' | transloco }}</span>
+        <span class="watch-learn-grow__title-line">{{ 'about.watchLearnGrow.grow' | transloco }}</span>
+      </h2>
+    </div>
+    <div class="watch-learn-grow__grid">
+      @for (stat of stats(); track stat.labelKey) {
+        <div class="watch-learn-grow__card">
+          <img 
+            [src]="stat.image" 
+            [alt]="stat.labelKey | transloco" 
+            class="watch-learn-grow__image"
+          />
+          <div class="watch-learn-grow__overlay">
+            <span class="watch-learn-grow__value">{{ stat.value }}</span>
+            <span class="watch-learn-grow__label">{{ stat.labelKey | transloco }}</span>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

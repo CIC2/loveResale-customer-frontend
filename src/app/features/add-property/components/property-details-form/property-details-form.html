@@ -1,0 +1,180 @@
+<form [formGroup]="form" class="property-details-form">
+  <div class="property-details-form__grid">
+    <!-- Project -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.project' | transloco }}
+      </label>
+      <p-select
+        formControlName="project"
+        [options]="projectOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'addProperty.form.projectPlaceholder' | transloco"
+        styleClass="property-details-form__select"
+      />
+    </div>
+
+    <!-- Type -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.type' | transloco }}
+      </label>
+      <p-select
+        formControlName="type"
+        [options]="typeOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'addProperty.form.typePlaceholder' | transloco"
+        styleClass="property-details-form__select"
+      />
+    </div>
+
+    <!-- Floor -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.floor' | transloco }}
+      </label>
+      <p-select
+        formControlName="floor"
+        [options]="floorOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'addProperty.form.floorPlaceholder' | transloco"
+        styleClass="property-details-form__select"
+      />
+    </div>
+
+    <!-- Bathrooms -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.bathrooms' | transloco }}
+      </label>
+      <p-select
+        formControlName="bathrooms"
+        [options]="bathroomsOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'addProperty.form.bathroomsPlaceholder' | transloco"
+        styleClass="property-details-form__select"
+      />
+    </div>
+
+    <!-- Finishing -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.finishing' | transloco }}
+      </label>
+      <p-select
+        formControlName="finishing"
+        [options]="finishingOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'addProperty.form.finishingPlaceholder' | transloco"
+        styleClass="property-details-form__select"
+      />
+    </div>
+
+    <!-- Delivery -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.delivery' | transloco }}
+      </label>
+      <p-select
+        formControlName="delivery"
+        [options]="deliveryOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'addProperty.form.deliveryPlaceholder' | transloco"
+        styleClass="property-details-form__select"
+      />
+    </div>
+
+    <!-- Area -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.area' | transloco }}
+      </label>
+      <input 
+        pInputText 
+        type="number" 
+        formControlName="area"
+        class="property-details-form__input"
+        [placeholder]="'addProperty.form.areaPlaceholder' | transloco"
+      />
+    </div>
+
+    <!-- Group -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.group' | transloco }}
+      </label>
+      <input 
+        pInputText 
+        type="number" 
+        formControlName="group"
+        class="property-details-form__input"
+        [placeholder]="'addProperty.form.groupPlaceholder' | transloco"
+      />
+    </div>
+
+    <!-- Unit Number -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.unitNumber' | transloco }}
+      </label>
+      <input 
+        pInputText 
+        type="text" 
+        formControlName="unitNumber"
+        class="property-details-form__input"
+        [placeholder]="'addProperty.form.unitNumberPlaceholder' | transloco"
+      />
+    </div>
+
+    <!-- View -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.view' | transloco }}
+      </label>
+      <p-select
+        formControlName="view"
+        [options]="viewOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'addProperty.form.viewPlaceholder' | transloco"
+        styleClass="property-details-form__select"
+      />
+    </div>
+
+    <!-- Garage -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.garage' | transloco }}
+      </label>
+      <p-select
+        formControlName="garage"
+        [options]="garageOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'addProperty.form.garagePlaceholder' | transloco"
+        styleClass="property-details-form__select"
+      />
+    </div>
+
+    <!-- Bedrooms -->
+    <div class="property-details-form__field">
+      <label class="property-details-form__label">
+        {{ 'addProperty.form.bedrooms' | transloco }}
+      </label>
+      <p-select
+        formControlName="bedrooms"
+        [options]="bedroomsOptions()"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'addProperty.form.bedroomsPlaceholder' | transloco"
+        styleClass="property-details-form__select"
+      />
+    </div>
+  </div>
+</form>

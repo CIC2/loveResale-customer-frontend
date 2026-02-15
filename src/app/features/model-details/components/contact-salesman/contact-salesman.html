@@ -1,0 +1,25 @@
+<aside class="contact-salesman">
+  <!-- Header -->
+  <div class="contact-salesman__header">
+    <span class="contact-salesman__label">
+      {{ 'modelDetails.contactSalesman.readyToBuy' | transloco }}
+    </span>
+    <h3 class="contact-salesman__title">
+      {{ 'modelDetails.contactSalesman.title' | transloco }}
+    </h3>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="contact-salesman__actions">
+    <div class="contact-salesman__row">
+      <p-button [label]="'modelDetails.contactSalesman.zoomMeeting' | transloco" class="contact-salesman__btn--primary"
+        (onClick)="onZoomMeeting()" />
+
+      <p-button [label]="'modelDetails.contactSalesman.bookAppointment' | transloco"
+        class="contact-salesman__btn--outline" [outlined]="true" (onClick)="onBookAppointment()" />
+    </div>
+
+    <p-button [label]="'modelDetails.contactSalesman.submitRequest' | transloco"
+      class="contact-salesman__btn--secondry contact-salesman__btn--full" (onClick)="onSubmitContactRequest()" />
+  </div>
+</aside>

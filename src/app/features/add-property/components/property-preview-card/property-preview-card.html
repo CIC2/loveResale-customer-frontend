@@ -1,0 +1,151 @@
+<div class="property-preview">
+  <h2 class="property-preview__title">{{ 'addProperty.preview.title' | transloco }}</h2>
+
+  <!-- Image Gallery -->
+  <div class="property-preview__gallery">
+    <div class="property-preview__main-image">
+      @if (previewData().images.length > 0) {
+        <img [src]="previewData().images[0]" alt="Main property image" />
+      } @else {
+        <div class="property-preview__placeholder">
+          <svg-icon 
+            src="assets/icons/image.svg" 
+            [svgStyle]="{ 'width.rem': 2.5, 'height.rem': 2.5 }"
+          ></svg-icon>
+        </div>
+      }
+    </div>
+    <div class="property-preview__thumbnails">
+      @for (i of [1, 2, 3]; track i) {
+        <div class="property-preview__thumbnail">
+          @if (previewData().images[i]) {
+            <img [src]="previewData().images[i]" alt="Property thumbnail" />
+          } @else {
+            <div class="property-preview__placeholder property-preview__placeholder--small">
+              <svg-icon 
+                src="assets/icons/image.svg" 
+                [svgStyle]="{ 'width.rem': 1.25, 'height.rem': 1.25 }"
+              ></svg-icon>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Property Info -->
+  <div class="property-preview__info">
+    <span class="property-preview__location">{{ previewData().location || 'New Heliopolis City' }}</span>
+    <h3 class="property-preview__name">{{ previewData().title || 'Standalone Villa - New Cairo' }}</h3>
+  </div>
+
+  <!-- Details Grid -->
+  <div class="property-preview__details">
+    <div class="property-preview__detail-row">
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.type' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().type || '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.floor' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().floor || '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.bed' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().bed || '-' }}</span>
+      </div>
+    </div>
+
+    <div class="property-preview__detail-row">
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.bedrooms' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().bedrooms || '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.bathrooms' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().bathrooms || '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.finishing' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().finishing || '-' }}</span>
+      </div>
+    </div>
+
+    <div class="property-preview__detail-row">
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.delivery' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().delivery || '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.area' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().area || '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.group' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().group || '-' }}</span>
+      </div>
+    </div>
+
+    <div class="property-preview__detail-row">
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.unitNumber' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().unitNumber || '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.garage' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().garage || '-' }}</span>
+      </div>
+      <div class="property-preview__detail"></div>
+    </div>
+  </div>
+
+  <!-- Payment Section -->
+  <div class="property-preview__section">
+    <h4 class="property-preview__section-title">{{ 'addProperty.preview.payment' | transloco }}</h4>
+    <div class="property-preview__detail-row">
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.unitPrice' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().unitPrice ? (previewData().unitPrice | number) : '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.paidAmount' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().paidAmount ? (previewData().paidAmount | number) : '-' }}</span>
+      </div>
+    </div>
+    <div class="property-preview__detail-row">
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.overAmount' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().overAmount ? (previewData().overAmount | number) : '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.installmentPlan' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().installmentPlan || '-' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="property-preview__section">
+    <h4 class="property-preview__section-title">{{ 'addProperty.preview.contact' | transloco }}</h4>
+    <div class="property-preview__detail-row">
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.name' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().name || '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.email' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().email || '-' }}</span>
+      </div>
+    </div>
+    <div class="property-preview__detail-row">
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.phoneNumber' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().phoneNumber || '-' }}</span>
+      </div>
+      <div class="property-preview__detail">
+        <span class="property-preview__detail-label">{{ 'addProperty.preview.whatsapp' | transloco }}</span>
+        <span class="property-preview__detail-value">{{ previewData().whatsapp || '-' }}</span>
+      </div>
+    </div>
+  </div>
+</div>

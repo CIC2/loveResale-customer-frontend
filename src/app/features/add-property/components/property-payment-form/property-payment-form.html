@@ -1,0 +1,63 @@
+<form [formGroup]="form" class="property-payment-form">
+  <div class="property-payment-form__grid">
+    <!-- Unit Price -->
+    <div class="property-payment-form__field">
+      <label class="property-payment-form__label">
+        {{ 'addProperty.form.unitPrice' | transloco }}
+      </label>
+      <p-inputNumber
+        formControlName="unitPrice"
+        mode="currency"
+        currency="EGP"
+        locale="en-US"
+        [placeholder]="'addProperty.form.unitPricePlaceholder' | transloco"
+        styleClass="property-payment-form__input-number"
+      />
+    </div>
+
+    <!-- Paid Amount -->
+    <div class="property-payment-form__field">
+      <label class="property-payment-form__label">
+        {{ 'addProperty.form.paidAmount' | transloco }}
+      </label>
+      <p-inputNumber
+        formControlName="paidAmount"
+        mode="currency"
+        currency="EGP"
+        locale="en-US"
+        [placeholder]="'addProperty.form.paidAmountPlaceholder' | transloco"
+        styleClass="property-payment-form__input-number"
+      />
+    </div>
+
+    <!-- Over Amount -->
+    <div class="property-payment-form__field">
+      <label class="property-payment-form__label">
+        {{ 'addProperty.form.overAmount' | transloco }}
+      </label>
+      <p-inputNumber
+        formControlName="overAmount"
+        mode="currency"
+        currency="EGP"
+        locale="en-US"
+        [placeholder]="'addProperty.form.overAmountPlaceholder' | transloco"
+        styleClass="property-payment-form__input-number"
+      />
+    </div>
+
+    <!-- Installment Plan -->
+    <div class="property-payment-form__field">
+      <label class="property-payment-form__label">
+        {{ 'addProperty.form.installmentPlan' | transloco }}
+      </label>
+      <p-select
+        formControlName="installmentPlan"
+        [options]="installmentOptions"
+        optionLabel="label"
+        optionValue="value"
+        [placeholder]="'addProperty.form.installmentPlanPlaceholder' | transloco"
+        styleClass="property-payment-form__select"
+      />
+    </div>
+  </div>
+</form>

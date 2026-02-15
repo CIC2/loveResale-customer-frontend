@@ -1,0 +1,31 @@
+<div class="get-in-touch">
+  <div class="get-in-touch__header">
+    <h2 class="get-in-touch__title">
+      {{ 'contactUs.getInTouch.title' | transloco }}
+    </h2>
+    <p class="get-in-touch__description">
+      {{ 'contactUs.getInTouch.description' | transloco }}
+    </p>
+  </div>
+  
+  <div class="get-in-touch__branches">
+    @for (branch of branches; track branch.titleKey) {
+      <div class="get-in-touch__branch" [class.get-in-touch__branch--hotline]="branch.type === 'hotline'">
+        <div class="get-in-touch__branch-icon">
+          <svg-icon 
+            [name]="branch.icon" 
+            [svgClass]="'get-in-touch__icon'"
+          ></svg-icon>
+        </div>
+        <div class="get-in-touch__branch-content">
+          <h3 class="get-in-touch__branch-title" [class.get-in-touch__branch-title--link]="branch.type === 'branch'">
+            {{ branch.titleKey | transloco }}
+          </h3>
+          <p class="get-in-touch__branch-address" [class.get-in-touch__branch-address--large]="branch.type === 'hotline'">
+            {{ branch.addressKey | transloco }}
+          </p>
+        </div>
+      </div>
+    }
+  </div>
+</div>

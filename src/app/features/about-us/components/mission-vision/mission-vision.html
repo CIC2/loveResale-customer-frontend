@@ -1,0 +1,30 @@
+<section class="mission-vision">
+  <div class="mission-vision__container">
+    <div class="mission-vision__header">
+      <h2 class="mission-vision__title">{{ 'about.mvv.sectionTitle' | transloco }}</h2>
+      <p-button
+        [label]="'about.mvv.exploreMore' | transloco"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        [outlined]="true"
+        styleClass="mission-vision__explore-btn"
+      />
+    </div>
+    <div class="mission-vision__grid">
+      @for (card of cards(); track card.titleKey) {
+        <div class="mission-vision__card">
+          <h3 class="mission-vision__card-title">
+            {{ card.titleKey | transloco }}
+          </h3>
+          <p class="mission-vision__card-description">
+            {{ card.descriptionKey | transloco }}
+          </p>
+          <button type="button" class="mission-vision__card-link">
+            <span>{{ 'about.mvv.readMore' | transloco }}</span>
+            <i class="pi pi-plus"></i>
+          </button>
+        </div>
+      }
+    </div>
+  </div>
+</section>

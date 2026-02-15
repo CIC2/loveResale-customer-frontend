@@ -1,0 +1,45 @@
+<section class="contact-map">
+  <div class="contact-map__header">
+    <h2 class="contact-map__title">
+      {{ 'contactUs.map.title' | transloco }}
+    </h2>
+    <p class="contact-map__description">
+      {{ 'contactUs.map.description' | transloco }}
+    </p>
+  </div>
+
+  <div class="contact-map__content">
+    <div class="contact-map__map-wrapper">
+      <img 
+        src="/images/project-map.jpg" 
+        alt="Location Map"
+        class="contact-map__image"
+      />
+      
+      <!-- Map Controls -->
+      <div class="contact-map__controls">
+        <button 
+          class="contact-map__control-btn"
+          [class.contact-map__control-btn--active]="currentView() === 'map'"
+          (click)="setView('map')"
+        >
+          {{ 'contactUs.map.view360' | transloco }}
+        </button>
+        <button 
+          class="contact-map__control-btn"
+          [class.contact-map__control-btn--active]="currentView() === 'video'"
+          (click)="setView('video')"
+        >
+          {{ 'contactUs.map.video' | transloco }}
+        </button>
+        <button 
+          class="contact-map__control-btn"
+          [class.contact-map__control-btn--active]="currentView() === 'amenities'"
+          (click)="setView('amenities')"
+        >
+          {{ 'contactUs.map.amenities' | transloco }}
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

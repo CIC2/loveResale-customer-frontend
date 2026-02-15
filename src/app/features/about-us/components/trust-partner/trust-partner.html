@@ -1,0 +1,27 @@
+<section class="trust-partner">
+  <div class="trust-partner__container">
+    <div class="trust-partner__header">
+      <h2 class="trust-partner__title">
+        <span class="trust-partner__title-line">{{ 'about.trustPartner.titleLine1' | transloco }}</span>
+        <span class="trust-partner__title-line trust-partner__title-line--highlight">
+          {{ 'about.trustPartner.titleLine2' | transloco }}
+        </span>
+      </h2>
+    </div>
+    <div class="trust-partner__grid">
+      @for (card of cards(); track $index) {
+        <div class="trust-partner__card">
+          <div class="trust-partner__card-icon">
+            <i class="pi {{ card.icon }}"></i>
+          </div>
+          <h3 class="trust-partner__card-title">
+            {{ card.titleKey | transloco }}
+          </h3>
+          <p class="trust-partner__card-description">
+            {{ card.descriptionKey | transloco }}
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

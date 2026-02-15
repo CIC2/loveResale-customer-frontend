@@ -1,0 +1,37 @@
+<div class="property-media-form">
+  <div class="property-media-form__upload-area">
+    <p-fileUpload
+      mode="basic"
+      name="images[]"
+      accept="image/*"
+      [multiple]="true"
+      [auto]="true"
+      (onSelect)="onFileSelect($event)"
+      [chooseLabel]="'addProperty.form.uploadImages' | transloco"
+      chooseStyleClass="property-media-form__upload-button"
+    />
+    <p class="property-media-form__upload-hint">
+      {{ 'addProperty.form.uploadHint' | transloco }}
+    </p>
+  </div>
+
+  @if (uploadedImages().length > 0) {
+    <div class="property-media-form__preview-grid">
+      @for (image of uploadedImages(); track $index) {
+        <div class="property-media-form__preview-item">
+          <img [src]="image" alt="Uploaded image" class="property-media-form__preview-image" />
+          <button 
+            type="button" 
+            class="property-media-form__remove-button"
+            (click)="removeImage($index)"
+          >
+            <svg-icon 
+              src="assets/icons/close.svg" 
+              [svgStyle]="{ 'width.rem': 1, 'height.rem': 1 }"
+            ></svg-icon>
+          </button>
+        </div>
+      }
+    </div>
+  }
+</div>

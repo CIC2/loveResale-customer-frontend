@@ -1,0 +1,24 @@
+<section class="family-cta">
+  <div class="family-cta__container">
+    <div class="family-cta__content">
+      <h2 class="family-cta__title">
+        <span class="family-cta__title-line">{{ 'about.familyCta.titleLine1' | transloco }}</span>
+        <span class="family-cta__title-line">{{ 'about.familyCta.titleLine2' | transloco }}</span>
+      </h2>
+      <p class="family-cta__description">
+        {{ 'about.familyCta.description' | transloco }}
+      </p>
+      <p-button
+        [label]="'about.familyCta.learnMore' | transloco"
+        icon="pi pi-arrow-right"
+        iconPos="right"
+        severity="info"
+        [outlined]="true"
+        styleClass="family-cta__btn"
+      />
+    </div>
+    <div class="family-cta__brand">
+      <span class="family-cta__brand-text">Homfly.</span>
+    </div>
+  </div>
+</section>

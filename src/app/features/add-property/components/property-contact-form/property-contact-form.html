@@ -1,0 +1,59 @@
+<form [formGroup]="form" class="property-contact-form">
+  <div class="property-contact-form__grid">
+    <!-- Name -->
+    <div class="property-contact-form__field">
+      <label class="property-contact-form__label">
+        {{ 'addProperty.form.contactName' | transloco }}
+      </label>
+      <input 
+        pInputText 
+        type="text" 
+        formControlName="name"
+        class="property-contact-form__input"
+        [placeholder]="'addProperty.form.contactNamePlaceholder' | transloco"
+      />
+    </div>
+
+    <!-- Email -->
+    <div class="property-contact-form__field">
+      <label class="property-contact-form__label">
+        {{ 'addProperty.form.contactEmail' | transloco }}
+      </label>
+      <input 
+        pInputText 
+        type="email" 
+        formControlName="email"
+        class="property-contact-form__input"
+        [placeholder]="'addProperty.form.contactEmailPlaceholder' | transloco"
+      />
+    </div>
+
+    <!-- Phone Number -->
+    <div class="property-contact-form__field">
+      <label class="property-contact-form__label">
+        {{ 'addProperty.form.contactPhone' | transloco }}
+      </label>
+      <input 
+        pInputText 
+        type="tel" 
+        formControlName="phoneNumber"
+        class="property-contact-form__input"
+        [placeholder]="'addProperty.form.contactPhonePlaceholder' | transloco"
+      />
+    </div>
+
+    <!-- WhatsApp -->
+    <div class="property-contact-form__field">
+      <label class="property-contact-form__label">
+        {{ 'addProperty.form.contactWhatsapp' | transloco }}
+      </label>
+      <input 
+        pInputText 
+        type="tel" 
+        formControlName="whatsapp"
+        class="property-contact-form__input"
+        [placeholder]="'addProperty.form.contactWhatsappPlaceholder' | transloco"
+      />
+    </div>
+  </div>
+</form>

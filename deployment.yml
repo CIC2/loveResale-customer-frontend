@@ -1,20 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: vso-dev-customer-front-app
+  name: resale-dev-customer-front-app
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: vso-dev-customer-front-app
+      app: resale-dev-customer-front-app
   template:
     metadata:
       labels:
-        app: vso-dev-customer-front-app
+        app: resale-dev-customer-front-app
     spec:
       containers:
-        - name: vso-dev-customer-front-app
-          image: webapp:1
+        - name: resale-dev-customer-front-app
+          image: de.icr.io/dev-registry/loveresale-customer-frontend:latest
+          imagePullPolicy: Always
           # env:
           #   - name: BANK_URL
           #     valueFrom:
@@ -41,9 +42,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: vso-dev-customer-front-service-cip
+  name: resale-dev-customer-front-service-cip
   labels:
-    app: vso-dev-customer-front-app
+    app: resale-dev-customer-front-app
 spec:
   type: ClusterIP
   ports:
@@ -52,14 +53,14 @@ spec:
       targetPort: 80
   # label keys and values that must match in order to receive traffic for this service
   selector:
-    app: vso-dev-customer-front-app
+    app: resale-dev-customer-front-app
 # ---
 # apiVersion: v1
 # kind: Service
 # metadata:
-#   name: vso-dev-customer-front-service
+#   name: resale-dev-customer-front-service
 #   labels:
-#     app: vso-dev-customer-front-service
+#     app: resale-dev-customer-front-service
 # spec:
 #   type: NodePort
 #   ports:
@@ -68,16 +69,16 @@ spec:
 #       targetPort: 8025
 #   # label keys and values that must match in order to receive traffic for this service
 #   selector:
-#     app: vso-dev-customer-front-app
+#     app: resale-dev-customer-front-app
 
 # ---
 # apiVersion: networking.k8s.io/v1beta1
 # kind: Ingress
 # metadata:
-#   name: vso-dev-customer-front-ingress
+  #   name: resale-dev-customer-front-ingress
 # spec:
 #   rules:
-#   - host: vso-dev-customer-front-app.cluster-ingress-subdomain
+#   - host: resale-dev-customer-front-app.cluster-ingress-subdomain
 #     http:
 #       paths:
 #       - backend:

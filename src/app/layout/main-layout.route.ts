@@ -84,4 +84,8 @@ export const CUSTOMER_LAYOUT: Routes = [
     loadComponent: () =>
       import('shared/components').then((c) => c.NotFoundComponent),
   },
+  {
+    path: '**',
+    redirectTo: '404',
+  },
 ];

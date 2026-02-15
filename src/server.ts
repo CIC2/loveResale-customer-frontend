@@ -46,7 +46,14 @@ app.use((req, res, next) => {
     .then((response) =>
       response ? writeResponseToNodeResponse(response, res) : next()
     )
-    .catch(next);
+    .catch((err: unknown) => {
+      const code = err && typeof err === 'object' && 'code' in err ? (err as { code: number }).code : null;
+      if (code === 4002) {
+        res.status(404).send('Not Found');
+        return;
+      }
+      next(err);
+    });
 });
 
 /**
@@ -55,7 +62,7 @@ app.use((req, res, next) => {
  */
 if (isMainModule(import.meta.url)) {
   const port = process.env['PORT'] || 80;
-  app.listen(port, (error) => {
+  app.listen(port, (error?: Error) => {
     if (error) {
       throw error;
     }

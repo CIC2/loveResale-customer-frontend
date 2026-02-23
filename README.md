@@ -88,3 +88,14 @@ This folder hosts the application shell and the main building blocks. Below is a
   - Examples: UI atoms/molecules (buttons, cards), directives, pipes, small utilities.
   - Project note: API clients are placed here (e.g., `shared/api/`) for reuse across features.
   - Guideline: keep API clients presentation-agnostic; domain-heavy APIs can move to a feature or `core/` if needed.
+
+## Documentation
+
+Detailed documentation lives in the **[docs/](docs/)** folder:
+
+- **[docs/README.md](docs/README.md)** – Index of all documentation.
+- **Architecture & routing** – [ARCHITECTURE.md](docs/ARCHITECTURE.md), [ROUTING.md](docs/ROUTING.md).
+- **Codebase map** – [CORE.md](docs/CORE.md), [FEATURES.md](docs/FEATURES.md), [LAYOUT_AND_SHELL.md](docs/LAYOUT_AND_SHELL.md), [SHARED.md](docs/SHARED.md).
+- **Styling & i18n** – [STYLING_AND_THEMING.md](docs/STYLING_AND_THEMING.md), [I18N.md](docs/I18N.md).
+- **Development** – [DEVELOPMENT.md](docs/DEVELOPMENT.md).
+- **Backend API contract** – [BACKEND_API_SPECIFICATION.md](docs/BACKEND_API_SPECIFICATION.md).

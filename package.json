@@ -7,8 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr": "node dist/vso-revamp/server/server.mjs",
-    "postinstall": "patch-package"
+    "serve:ssr": "node dist/vso-revamp/server/server.mjs"
   },
   "prettier": {
     "overrides": [
@@ -63,7 +62,6 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "sass": "^1.93.2",
-    "typescript": "~5.9.3",
-    "patch-package": "^8.0.0"
+    "typescript": "~5.9.3"
   }
 }

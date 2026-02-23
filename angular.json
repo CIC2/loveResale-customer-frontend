@@ -76,8 +76,9 @@
               ],
               "outputHashing": "all",
               "optimization": {
+                "scripts": true,
                 "styles": {
-                  "inlineCritical": false
+                  "inlineCritical": true
                 }
               }
             },

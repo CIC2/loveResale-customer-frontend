@@ -42,4 +42,11 @@ export class SimilarUnits {
   onUnitClick(unitId: number): void {
     this.unitClick.emit(unitId);
   }
+
+  onCardKeydown(event: KeyboardEvent, unitId: number): void {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      this.onUnitClick(unitId);
+    }
+  }
 }

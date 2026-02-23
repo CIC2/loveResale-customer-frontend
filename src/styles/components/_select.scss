@@ -33,7 +33,7 @@
         &:active,
         &.p-focus {
           background-color: var(--secondary) !important;
-          color: white !important;
+          color: var(--white) !important;
         }
       }
     }

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
+import { TranslocoService } from '@jsverse/transloco';
 import {
   HeroSection,
   PropertyCategories,
@@ -27,4 +29,12 @@ import {
   `,
   styles: [],
 })
-export class Home {}
+export class Home implements OnInit {
+  private readonly meta = inject(Meta);
+  private readonly translocoService = inject(TranslocoService);
+
+  ngOnInit(): void {
+    const description = this.translocoService.translate('home.metaDescription');
+    this.meta.updateTag({ name: 'description', content: description });
+  }
+}

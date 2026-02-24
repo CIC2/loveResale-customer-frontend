@@ -78,6 +78,7 @@ export class ProfilePageComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(() => this.updateTranslatedContent());
   }
+  
 
   private updateTranslatedContent(): void {
     this.heroBreadcrumbHome.set({

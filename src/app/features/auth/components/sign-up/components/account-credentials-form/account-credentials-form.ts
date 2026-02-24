@@ -97,21 +97,30 @@ export class AccountCredentialsForm {
     this.authApi
       .signUp(formValue)
       .pipe(
-        switchMap(() => {
-          return this.authApi
-            .sendOtp(formValue.countryCode, formValue.mobile)
-            .pipe(
-              tap((res) => {
-                this.dialogRef.close();
-                this.openVerify(
-                  formValue.countryCode,
-                  formValue.mobile,
-                  res.message.split(':')[1].trim()
-                );
-              }),
-              finalize(() => this.loading.set(false))
-            );
-        })
+         // switchMap(() => {
+        //   return this.authApi
+        //     .sendOtp(formValue.countryCode, formValue.mobile)
+        //     .pipe(
+        //       tap((res) => {
+        //         this.dialogRef.close();
+        //         this.openVerify(
+        //           formValue.countryCode,
+        //           formValue.mobile,
+        //           res.message.split(':')[1].trim()
+        //         );
+        //       }),
+        //       finalize(() => this.loading.set(false))
+        //     );
+        // }
+        tap(() => {
+          this.dialogRef.close();
+          this.openVerify(
+            formValue.countryCode,
+            formValue.mobile,
+            '***123'
+          );
+        }),
+        finalize(() => this.loading.set(false))
       )
       .subscribe();
   }

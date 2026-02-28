@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  computed,
   DestroyRef,
   inject,
   signal,
@@ -12,6 +13,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
 import { MenuItem } from 'primeng/api';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 
+import { UserStateService } from 'shared/api';
 import { ProfileFormComponent } from '../../components/profile-form/profile-form.component';
 import { ProfileSidebarComponent } from '../../components/profile-sidebar/profile-sidebar.component';
 
@@ -50,6 +52,7 @@ export class ProfilePageComponent {
   private fb = inject(FormBuilder);
   private translocoService = inject(TranslocoService);
   private destroyRef = inject(DestroyRef);
+  private userState = inject(UserStateService);
 
   activeItemKey = 'personal-info';
 
@@ -59,7 +62,7 @@ export class ProfilePageComponent {
     phoneNumber: [''],
     phoneNumberOptional: [''],
     email: [''],
-    birthDate: [null],
+    birthDate: [null as Date | null],
     nationality: [''],
     gender: [''],
   });
@@ -71,6 +74,26 @@ export class ProfilePageComponent {
   sidebarSections = signal<SidebarSection[]>([]);
   genderOptions = signal<OptionItem[]>([]);
   nationalityOptions = signal<OptionItem[]>([]);
+
+  userFormPatchData = computed(() => {
+    const user = this.userState.currentUser();
+    if (!user || Object.keys(user).length === 0) return null;
+    const [firstName = '', ...rest] = (user.fullName ?? '').trim().split(/\s+/);
+    const lastName = rest.join(' ') ?? '';
+    const birthDate = user.birthdate
+      ? new Date(user.birthdate)
+      : null;
+    return {
+      firstName: firstName || null,
+      lastName: lastName || null,
+      phoneNumber: user.mobile ?? '',
+      phoneNumberOptional: user.landline ?? '',
+      email: user.email ?? '',
+      birthDate,
+      nationality: user.nationality ?? '',
+      gender: user.gender ?? '',
+    };
+  });
 
   constructor() {
     this.updateTranslatedContent();

@@ -29,6 +29,7 @@
       />
       <app-profile-form
         [formGroup]="profileForm"
+        [initialData]="userFormPatchData()"
         [breadcrumbItems]="formBreadcrumbItems()"
         [genderOptions]="genderOptions()"
         [nationalityOptions]="nationalityOptions()"

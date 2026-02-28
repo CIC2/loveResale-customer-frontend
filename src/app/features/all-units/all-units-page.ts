@@ -1,6 +1,8 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { PaginatorState } from 'primeng/paginator';
+import { UnitApi } from 'core/api/search/services/unit';
+import { GetUnitsParams, UnitListResponse } from 'core/api/search/models';
 import { SearchService } from 'shared/api/search/services/search';
 import { SearchStore } from 'shared/api/search/store/search-store';
 import {
@@ -11,6 +13,26 @@ import {
 import { SearchHeader, SearchHeaderFilters } from './components/search-header/search-header';
 import { UnitCardData } from './components/unit-card/unit-card';
 import { UnitsGrid } from './components/units-grid/units-grid';
+
+function mapUnitToCardData(item: UnitListResponse): UnitCardData {
+  const totalPrice = parseFloat(item.basePrice ?? '0') || 0;
+  return {
+    id: item.id,
+    imageUrl: item.modelImageUrl ?? '/images/all-units-image.jpg',
+    location: item.projectName ?? item.address ?? '',
+    title: item.name ?? item.modelName ?? '',
+    bedrooms: parseInt(item.numberOfRooms ?? '0', 10) || 0,
+    bathrooms: parseInt(item.bathroom ?? '0', 10) || 0,
+    view: item.ruViewDescription ?? '',
+    area: item.area ?? 0,
+    garage: false,
+    readyToMove: Boolean(item.deliveryDate),
+    totalPrice,
+    paidAmount: 0,
+    offerAmount: totalPrice,
+    isFavorite: false,
+  };
+}
 
 @Component({
   selector: 'app-all-units-page',
@@ -25,6 +47,7 @@ import { UnitsGrid } from './components/units-grid/units-grid';
 })
 export class AllUnitsPage implements OnInit {
   private router = inject(Router);
+  private unitApi = inject(UnitApi);
   private searchService = inject(SearchService);
   protected searchStore = inject(SearchStore);
 
@@ -61,151 +84,79 @@ export class AllUnitsPage implements OnInit {
 
   modelOptions = signal<FilterOption[]>([]);
 
-  // Units data (mock data for display)
-  units = signal<UnitCardData[]>([
-    {
-      id: 1,
-      imageUrl: '/images/all-units-image.jpg',
-      location: 'New Heliopolis City',
-      title: 'Standalone Villa - New Cairo',
-      bedrooms: 4,
-      bathrooms: 3,
-      view: 'Garden View',
-      area: 265,
-      garage: true,
-      readyToMove: true,
-      totalPrice: 24000000,
-      paidAmount: 12000000,
-      offerAmount: 12000000,
-      isFavorite: false,
-    },
-    {
-      id: 2,
-      imageUrl: '/images/all-units-image.jpg',
-      location: 'New Heliopolis City',
-      title: 'Standalone Villa - New Cairo',
-      bedrooms: 4,
-      bathrooms: 2,
-      view: 'Garden View',
-      area: 265,
-      garage: true,
-      readyToMove: true,
-      totalPrice: 24000000,
-      paidAmount: 12000000,
-      offerAmount: 12000000,
-      isFavorite: false,
-    },
-    {
-      id: 3,
-      imageUrl: '/images/all-units-image.jpg',
-      location: 'New Heliopolis City',
-      title: 'Standalone Villa - New Cairo',
-      bedrooms: 4,
-      bathrooms: 3,
-      view: 'Garden View',
-      area: 265,
-      garage: false,
-      readyToMove: true,
-      totalPrice: 24000000,
-      paidAmount: 12000000,
-      offerAmount: 12000000,
-      isFavorite: true,
-    },
-    {
-      id: 4,
-      imageUrl: '/images/all-units-image.jpg',
-      location: 'New Heliopolis City',
-      title: 'Standalone Villa - New Cairo',
-      bedrooms: 4,
-      bathrooms: 2,
-      view: 'Garden View',
-      area: 261,
-      garage: true,
-      readyToMove: false,
-      totalPrice: 24000000,
-      paidAmount: 12000000,
-      offerAmount: 12000000,
-      isFavorite: false,
-    },
-    {
-      id: 5,
-      imageUrl: '/images/all-units-image.jpg',
-      location: 'New Heliopolis City',
-      title: 'Standalone Villa - New Cairo',
-      bedrooms: 4,
-      bathrooms: 3,
-      view: 'Garden View',
-      area: 265,
-      garage: true,
-      readyToMove: true,
-      totalPrice: 24000000,
-      paidAmount: 12000000,
-      offerAmount: 12000000,
-      isFavorite: false,
-    },
-    {
-      id: 6,
-      imageUrl: '/images/all-units-image.jpg',
-      location: 'New Heliopolis City',
-      title: 'Standalone Villa - New Cairo',
-      bedrooms: 4,
-      bathrooms: 2,
-      view: 'Garden View',
-      area: 261,
-      garage: true,
-      readyToMove: true,
-      totalPrice: 24000000,
-      paidAmount: 12000000,
-      offerAmount: 12000000,
-      isFavorite: false,
-    },
-  ]);
-
-  totalRecords = signal(150);
+  units = signal<UnitCardData[]>([]);
+  totalRecords = signal(0);
   currentPage = signal(0);
   pageSize = signal(10);
   loading = signal(false);
 
+  private lastParams: GetUnitsParams = {};
+
   ngOnInit() {
     this.loadFilterOptions();
+    this.loadUnits();
   }
 
   loadFilterOptions() {
-    // Load filter options from API
-    // this.searchService.getSearchModel({}).subscribe((res) => {
-    //   // Populate filter options from response
-    // });
+    // Load filter options from API when available
+    // this.searchService.getSearchModel({}).subscribe((res) => { ... });
+  }
+
+  loadUnits() {
+    this.loading.set(true);
+    this.unitApi
+      .getUnits({
+        page: this.currentPage(),
+        size: this.pageSize(),
+        ...this.lastParams,
+      })
+      .subscribe({
+        next: (res) => {
+          if (res.status && res.data) {
+            this.units.set(res.data.content.map(mapUnitToCardData));
+            this.totalRecords.set(res.data.totalElements);
+          } else {
+            this.units.set([]);
+          }
+          this.loading.set(false);
+        },
+        error: () => {
+          this.units.set([]);
+          this.loading.set(false);
+        },
+      });
   }
 
   onSearch(filters: SearchHeaderFilters) {
-    console.log('Search filters:', filters);
+    this.lastParams = {};
+    this.currentPage.set(0);
     this.loading.set(true);
-    // Implement search logic
-    setTimeout(() => this.loading.set(false), 1000);
+    this.loadUnits();
   }
 
   onKeywordClick(keyword: string) {
-    console.log('Keyword clicked:', keyword);
+    this.lastParams = { ...this.lastParams, modelCode: keyword };
+    this.currentPage.set(0);
+    this.loadUnits();
   }
 
   onFiltersChange(filters: Partial<FiltersState>) {
-    console.log('Filters changed:', filters);
+    this.lastParams = { ...this.lastParams };
+    this.currentPage.set(0);
     this.loading.set(true);
-    // Implement filter logic
-    setTimeout(() => this.loading.set(false), 1000);
+    this.loadUnits();
   }
 
   onResetFilters() {
-    console.log('Filters reset');
+    this.lastParams = {};
+    this.currentPage.set(0);
     this.loading.set(true);
-    // Reset and reload
-    setTimeout(() => this.loading.set(false), 500);
+    this.loadUnits();
   }
 
   onPageChange(event: PaginatorState) {
     this.currentPage.set(event.page ?? 0);
-    console.log('Page changed:', event);
-    // Load new page data
+    this.loadUnits();
   }
 
   onFavoriteClick(unitId: number) {

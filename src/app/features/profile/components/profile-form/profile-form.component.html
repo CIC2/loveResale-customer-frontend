@@ -1,7 +1,7 @@
 <section class="profile-form">
   <div class="profile-form__header">
     <p-breadcrumb
-      [model]="breadcrumbItems"
+      [model]="breadcrumbItems()"
       styleClass="profile-form__breadcrumb"
     />
     <h2 class="profile-form__title">
@@ -100,7 +100,7 @@
           inputId="nationality"
           styleClass="profile-form__dropdown"
           formControlName="nationality"
-          [options]="nationalityOptions"
+          [options]="nationalityOptions()"
           optionLabel="label"
           optionValue="value"
           [placeholder]="'profile.form.placeholders.nationality' | transloco"
@@ -115,7 +115,7 @@
           inputId="gender"
           styleClass="profile-form__dropdown"
           formControlName="gender"
-          [options]="genderOptions"
+          [options]="genderOptions()"
           optionLabel="label"
           optionValue="value"
           [placeholder]="'profile.form.placeholders.gender' | transloco"
